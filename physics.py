@@ -49,6 +49,11 @@ def draw_static_circles(static_circles):
         pos_Y = int(static_circle.body.position.y)
         pygame.draw.circle(screen, [0, 48, 179], (pos_X, pos_Y), 7)   
 
+def check_and_delete_circles(objects):
+    for i in objects:
+        if i.body.position.y > 600:
+            objects.remove(i)
+            print("object removed")
 mouse_coordinates = []
 
 def main():
@@ -77,6 +82,7 @@ def main():
         screen.fill((0,0,0))
         draw_object(objects)
         draw_static_circles(static_circles)
+        check_and_delete_circles(objects)
         space.step(1/50)
         pygame.display.update()
     clock.tick(130)
